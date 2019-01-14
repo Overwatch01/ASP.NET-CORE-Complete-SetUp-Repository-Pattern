@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Core.Models.Identity
 {
-    public class Claim : IdentityUserClaim<int>
+    public class Claim : IdentityUserClaim<long>
     {
     }
 }

@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Core.Models.Identity
 {
-    public class Login : IdentityUserLogin<long>
+    public class UserToken : IdentityUserToken<long>
     {
     }
 }

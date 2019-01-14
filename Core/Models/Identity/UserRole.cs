@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Core.Models.Identity
 {
-    public class UserRole : IdentityUserRole<int>
+    public class UserRole : IdentityUserRole<long>
     {
     }
 }

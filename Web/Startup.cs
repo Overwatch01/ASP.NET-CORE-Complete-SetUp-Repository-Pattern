@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ApplicationService.Util;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Hosting;
@@ -13,6 +14,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Infrastructure.Util;
 using AutoMapper;
+using Core.Models.Identity;
+using Infrastructure.DataAccess;
+using BusinessLogic.Util;
 
 namespace Web
 {
@@ -35,15 +39,16 @@ namespace Web
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            //services.AddDbContext<ApplicationDbContext>(options =>
-            //    options.UseSqlServer(
-            //        Configuration.GetConnectionString("DefaultConnection")));
-            //services.AddDefaultIdentity<IdentityUser>()
-            //    .AddEntityFrameworkStores<ApplicationDbContext>();
-            ///services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<ApplicationDbContext>();
             InfrastructureModule.Register(services,
                 Configuration.GetConnectionString("DefaultConnection"),
                 GetType().Assembly.FullName);
+
+            BusinessLogicModule.Register(services);
+
+            ApplicationServiceModule.Register(services);
+
+            services.AddDefaultIdentity<User>()
+                .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddAutoMapper();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

@@ -1,0 +1,35 @@
+﻿@model IEnumerable<ApplicationService.Model.ViewModel.TestViewModel>
+@{
+    ViewData["Title"] = "GetAllTests";
+}
+
+<h2>Get All Tests</h2>
+
+@if (!Model.Any())
+{
+    <text> There are no data in the db currently. You will need to add them manually </text>
+}
+else
+{
+    <table>
+        <thead>
+            <tr>
+                <th>S/N</th>
+                <th>Name</th>
+                <th>Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in @Model)
+            {
+                <tr>
+                    <td><h4>@item.Id</h4></td>
+                    <td><h4>@item.Name</h4></td>
+                    <td><h4>@item.Score</h4></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+

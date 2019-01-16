@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Infrastructure.Util;
+using AutoMapper;
 
 namespace Web
 {
@@ -43,6 +44,7 @@ namespace Web
             InfrastructureModule.Register(services,
                 Configuration.GetConnectionString("DefaultConnection"),
                 GetType().Assembly.FullName);
+            services.AddAutoMapper();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
